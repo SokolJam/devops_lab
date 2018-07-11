@@ -57,7 +57,7 @@ skip = 0
 for pos, item in enumerate(values):
     index = formula.find(str(item), skip)
     skip = index + 1
-    if formula[index-1] == '-':
+    if formula[index - 1] == '-':
         values[pos] = -item
 
 # Selection signs of mathematical operations from string.

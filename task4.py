@@ -34,10 +34,10 @@ def input_word(word, group):
 
 integers_array = input_array()
 for n in range(integers_array[0]):
-    group_a.append(input_word(n+1, 'A'))
+    group_a.append(input_word(n + 1, 'A'))
 
 for m in range(integers_array[1]):
-    group_b.append(input_word(m+1, 'B'))
+    group_b.append(input_word(m + 1, 'B'))
 
 for i in group_b:
     if i in group_a:
