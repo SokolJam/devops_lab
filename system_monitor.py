@@ -9,8 +9,9 @@ import time
 import psutil
 
 
-logging.basicConfig(format='TIMESTAMP: %(asctime)s: %(message)s', level=logging.INFO,
-                    filename=settings.OUTPUT_FILE, filemode='w+')
+logging.basicConfig(format='TIMESTAMP: %(asctime)s: %(message)s',
+                    level=logging.INFO, filename=settings.OUTPUT_FILE,
+                    filemode='w+')
 
 
 data = []
@@ -21,7 +22,8 @@ def write_json(**kwargs):
                  'SNAPSHOT': kwargs['i'], 'Overall CPU load (%)': kwargs['cp'],
                  'Free SWAP memory (M)': kwargs['s_m'],
                  'Used virtual memory (%)': kwargs['v_m'],
-                 'IO information': {'read': kwargs['r_io'], 'write': kwargs['w_io']},
+                 'IO information': {'read': kwargs['r_io'],
+                                    'write': kwargs['w_io']},
                  'Network information': {'packet_sent': kwargs['net1'],
                                          'packet_recv': kwargs['net2']}})
 
@@ -30,13 +32,14 @@ def write_json(**kwargs):
 
 
 def log(**kwargs):
-    logging.info('SNAPSHOT {i}: Overall CPU load = {cp} % : Free SWAP memory = '
-                 '{s_m} M: Used virtual memory = {v_m} % : IO information read = '
-                 '{r_io} write = {w_io} : Network information packet_sent = {net1} '
-                 'packet_recv = {net2}'.format(cp=kwargs['cp'], s_m=kwargs['s_m'],
-                                               v_m=kwargs['v_m'], r_io=kwargs['r_io'],
-                                               w_io=kwargs['w_io'], net1=kwargs['net1'],
-                                               net2=kwargs['net2'], i=kwargs['i']))
+    logging.info('SNAPSHOT {i}: Overall CPU load = {cp} % : Free SWAP memory'
+                 ' = {s_m} M: Used virtual memory = {v_m} % : IO information'
+                 ' read = {r_io} write = {w_io} : Network information '
+                 'packet_sent = {net1} packet_recv = '
+                 '{net2}'.format(cp=kwargs['cp'], s_m=kwargs['s_m'],
+                                 v_m=kwargs['v_m'], r_io=kwargs['r_io'],
+                                 w_io=kwargs['w_io'], net1=kwargs['net1'],
+                                 net2=kwargs['net2'], i=kwargs['i']))
 
 
 def info(i):
@@ -49,8 +52,8 @@ def info(i):
     net1 = psutil.net_io_counters().packets_sent
     net2 = psutil.net_io_counters().packets_recv
 
-    dict_choose[settings.OUTPUT](cp=cpu, s_m=swap_mem, v_m=v_mem, r_io=r_io, w_io=w_io,
-                                 net1=net1, net2=net2, i=i)
+    dict_choose[settings.OUTPUT](cp=cpu, s_m=swap_mem, v_m=v_mem, r_io=r_io,
+                                 w_io=w_io, net1=net1, net2=net2, i=i)
 
 
 if __name__ == '__main__':
@@ -58,8 +61,8 @@ if __name__ == '__main__':
         logging.info('---Monitoring is started!---')
         print('{time} ---Monitoring is started!---'
               '\nOutput to file: '
-              '{file}'.format(time=datetime.now().strftime('%d-%m-%Y_%H-%M-%S'),
-                              file=settings.OUTPUT_FILE))
+              '{f}'.format(time=datetime.now().strftime('%d-%m-%Y_%H-%M-%S'),
+                           f=settings.OUTPUT_FILE))
         index = 1
         while True:
             info(index)
