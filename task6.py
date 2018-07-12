@@ -3,13 +3,13 @@ import sys
 
 
 def format_check(num_ch, sign_ch):
-    """
-    The function return correct formula's format for checking.
+    """The function return correct formula's format for checking.
+
     :param num_ch: list of variables in formula
     :param sign_ch: list of signs in formula
     :return:
-    """
 
+    """
     full_formula = []
 
     if len(num_ch) < 3 or not 1 <= len(sign_ch) <= 2:
@@ -27,13 +27,13 @@ def format_check(num_ch, sign_ch):
 
 
 def result(numbers, sign_list):
-    """
-    The function calculate the result.
+    """The function calculate the result.
+
     :param numbers: list of variables in formula
     :param sign_list: list of signs in formula
     :return: return result of calculations
-    """
 
+    """
     if '*' in sign_list:
         return numbers[0] * numbers[1]
     elif '/' in sign_list:

@@ -2,12 +2,11 @@ import sys
 
 
 def input_value():
-    """
-    The function is responsible for input from console.
+    """The function is responsible for input from console.
     (with the compliance check)
     :return: input value
-    """
 
+    """
     value = int(input('Input N (0 ≤ N ≤ 10 ** 9): '))
     while not 0 <= value <= 10 ** 9:
         retry = str(input('Value out of range. Do you wont try again?(y/n) '))
@@ -20,12 +19,12 @@ def input_value():
 
 
 def factor(n):
-    """
-    The function checks would number have divisor at all.
+    """The function checks would number have divisor at all.
+
     :param n: checking number
     :return: array of divisors
-    """
 
+    """
     i = 2
     array_fact = []
     while i * i <= n:
@@ -39,12 +38,12 @@ def factor(n):
 
 
 def simple(x):
-    """
-    The function checks whether the number is prime.
+    """The function checks whether the number is prime.
+
     :param x: number
     :return: True if number is prime, False - if not, or number if x <= 9
-    """
 
+    """
     if x > 9:
         for i in range(2, x):
             if not x % i:
@@ -56,11 +55,11 @@ def simple(x):
 
 
 def natural():
-    """
-    The function calculates minimal natural number.
-    :return: minimal number
-    """
+    """The function calculates minimal natural number.
 
+    :return: minimal number
+
+    """
     n = input_value()
     print('N =', n)
     for i in factor(n):
