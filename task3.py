@@ -3,7 +3,6 @@ import sys
 
 def input_value():
     """The function is responsible for input from console.
-    (with the compliance check)
 
     :return: input value
 
