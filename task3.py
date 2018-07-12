@@ -1,53 +1,67 @@
 import sys
 
 
-# This function is responsible for input from console.
 def input_value():
+    """
+    The function is responsible for input from console.
+    (with the compliance check)
+    :return: input value
+    """
     value = int(input('Input N (0 ≤ N ≤ 10 ** 9): '))
-    if (value < 0) or (value > 10 ** 9):
-        retry = str(input('Value out of range.\nDo you wont try again?(y/n) '))
+    while not 0 <= value <= 10 ** 9:
+        retry = str(input('Value out of range. Do you wont try again?(y/n) '))
         if retry in 'Yy':
-            return input_value()
+            value = int(input('Input N (0 ≤ N ≤ 10 ** 9): '))
         else:
+            print('Exit from script!')
             sys.exit()
     return value
 
 
-# This function checks would number have divisor at all?
 def factor(n):
+    """
+    The function checks would number have divisor at all.
+    :param n: checking number
+    :return: array of divisors
+    """
     i = 2
     array_fact = []
     while i * i <= n:
-        while n % i == 0:
+        while not n % i:
             array_fact.append(i)
             n = n / i
-        i = i + 1
+        i += 1
     if n > 1:
         array_fact.append(int(n))
     return array_fact
 
 
-# The function checks whether the number is prime?
 def simple(x):
+    """
+    The function checks whether the number is prime.
+    :param x: number
+    :return: True if number is prime, False - if not, or number if x <= 9
+    """
     if x > 9:
         for i in range(2, x):
-            if (x % i) == 0:
+            if not x % i:
                 return False
         else:
             return True
-
     else:
         return x
 
 
-# The function calculates minimal natural number.
 def natural():
+    """
+    The function calculates minimal natural number.
+    :return: minimal number
+    """
     n = input_value()
-    print('N = {}'.format(n))
+    print('N =', n)
     for i in factor(n):
         if simple(i) is True:
             return -1
-
     q = 0
     result = 1
     while result != n:
@@ -58,4 +72,4 @@ def natural():
     return q
 
 
-print('Minimal Q = {}'.format(natural()))
+print('Minimal Q =', natural())

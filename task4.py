@@ -6,28 +6,42 @@ group_b = []
 def_dict = defaultdict(list)
 
 
-# This function is responsible for input from console first pair of integers.
 def input_array():
+    """
+    The function is responsible for input from console first pair of integers.
+
+    :return: array which include count of elements in group A and B
+
+    """
     integers = [int(x) for x in input('Input list (separate " "): ').split()]
-    if len(integers) < 2 or (integers[0] < 1) or (integers[1] < 1)\
-            or (integers[0] > 10000) or (integers[1] > 100):
-        retry = str(input('Value out of range.\nDo you wont try again?(y/n) '))
-        if retry in 'Yy':
-            return input_array()
+    while len(integers) < 2 or not 0 <= integers[0] <= 10000 \
+            or not 0 <= integers[1] <= 100:
+        ret = str(input('Value out of range.\nDo you wont try again?(y/n) '))
+        if ret in 'Yy':
+            integers = [int(x) for x in input('Input list '
+                                              '(separate " "): ').split()]
         else:
+            print('Exit from script!')
             sys.exit()
-    print('Integers={}'.format(integers))
+    print('Integers =', integers)
     return integers
 
 
-# This function is responsible for input from console elements of groups.
-def input_word(word, group):
-    word = input('Enter {i} word for group "{n}": '.format(i=word, n=group))
-    if (len(word) < 1) or (len(word) > 100):
-        retry = str(input('Value out of range.\nDo you wont try again?(y/n) '))
-        if retry in 'Yy':
-            input_word(word, group)
+def input_word(count, group):
+    """
+    The function is responsible for input from console elements of groups.
+
+    :param count: count of words
+    :param group: group's name
+    :return:
+    """
+    word = input('Enter %s word for group "%s": ' % (count, group))
+    if not 1 <= len(word) < 100:
+        ret = str(input('Value out of range.\nDo you wont try again?(y/n) '))
+        if ret in 'Yy':
+            word = input('Enter %s word for group "%s": ' % (count, group))
         else:
+            print('Exit from script!')
             sys.exit()
     return word
 
@@ -48,8 +62,8 @@ for i in group_b:
         def_dict[i].append(-1)
 
 
-print('Group A: {a}'.format(a=group_a))
-print('Group B: {b}'.format(b=group_b))
+print('Group A:', group_a)
+print('Group B:', group_b)
 
 for i in def_dict.keys():
-    print('Element "{e}" locate on the side: {p}'.format(e=i, p=def_dict[i]))
+    print('Element "%s" locate on the side: %s' % (i, def_dict[i]))

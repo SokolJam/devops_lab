@@ -6,4 +6,4 @@ for i in set(a):
     if i in set(b):
         c.append(i)
 
-print('Result list: {res}'.format(res=c))
+print('Result list:', c)
