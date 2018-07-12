@@ -9,6 +9,7 @@ def format_check(num_ch, sign_ch):
     :param sign_ch: list of signs in formula
     :return:
     """
+
     full_formula = []
 
     if len(num_ch) < 3 or not 1 <= len(sign_ch) <= 2:
@@ -32,6 +33,7 @@ def result(numbers, sign_list):
     :param sign_list: list of signs in formula
     :return: return result of calculations
     """
+
     if '*' in sign_list:
         return numbers[0] * numbers[1]
     elif '/' in sign_list:

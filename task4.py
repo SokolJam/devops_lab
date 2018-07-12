@@ -13,6 +13,7 @@ def input_array():
     :return: array which include count of elements in group A and B
 
     """
+
     integers = [int(x) for x in input('Input list (separate " "): ').split()]
     while len(integers) < 2 or not 0 <= integers[0] <= 10000 \
             or not 0 <= integers[1] <= 100:
@@ -35,6 +36,7 @@ def input_word(count, group):
     :param group: group's name
     :return:
     """
+
     word = input('Enter %s word for group "%s": ' % (count, group))
     if not 1 <= len(word) < 100:
         ret = str(input('Value out of range.\nDo you wont try again?(y/n) '))

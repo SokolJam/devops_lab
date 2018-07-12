@@ -7,6 +7,7 @@ def input_value():
     (with the compliance check)
     :return: input value
     """
+
     value = int(input('Input N (0 ≤ N ≤ 10 ** 9): '))
     while not 0 <= value <= 10 ** 9:
         retry = str(input('Value out of range. Do you wont try again?(y/n) '))
@@ -24,6 +25,7 @@ def factor(n):
     :param n: checking number
     :return: array of divisors
     """
+
     i = 2
     array_fact = []
     while i * i <= n:
@@ -42,6 +44,7 @@ def simple(x):
     :param x: number
     :return: True if number is prime, False - if not, or number if x <= 9
     """
+
     if x > 9:
         for i in range(2, x):
             if not x % i:
@@ -57,6 +60,7 @@ def natural():
     The function calculates minimal natural number.
     :return: minimal number
     """
+
     n = input_value()
     print('N =', n)
     for i in factor(n):
