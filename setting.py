@@ -1,0 +1,6 @@
+NAME = 'pr-stats'
+VERSION = '1.0.0'
+INFO = 'This program gets information from GitHub.'
+GITHUB_API = 'https://api.github.com/users/:user'
+GITHUB_API_REPO = 'https://api.github.com/repos/:user/:repo'
+GITHUB_API_COUNT = GITHUB_API_REPO + '/stats/contributors'
