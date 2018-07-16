@@ -1,5 +1,6 @@
 from datetime import datetime
 import json
+import os
 import settings
 import sys
 import time
@@ -12,8 +13,8 @@ class Monitoring(object):
     def __init__(self, ):
         self.dict_choose = {'txt': self.write_file, 'json': self.write_json}
         self.c_time = datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
-        self.file = settings.FILE_DIR + '/' + self.c_time + '-output.' \
-            + settings.OUTPUT
+        self.out_file = os.path.join(settings.FILE_DIR, '%s-output.%s'
+                                     % (self.c_time, settings.OUTPUT))
         self.data = []
         self.cpu = 0
         self.swap_mem = 0
@@ -34,7 +35,7 @@ class Monitoring(object):
                                            'packet_receive': self.net_receive}
                           })
 
-        with open(self.file, 'w') as js:
+        with open(self.out_file, 'w') as js:
             json.dump(self.data, js)
 
     def write_file(self, counter):
@@ -53,11 +54,10 @@ class Monitoring(object):
                                          net1=self.net_sent,
                                          net2=self.net_receive)
 
-        with open(self.file, 'a') as file:
+        with open(self.out_file, 'a') as write_file:
             if counter == 1:
-                file.write('{t} ---Monitoring is started---'
-                           ''.format(t=self.c_time, file=self.file))
-            file.write(text)
+                write_file.write('%s --Monitoring is started--' % self.c_time)
+            write_file.write(text)
 
     def info(self, iteration):
         self.c_time = datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
@@ -73,7 +73,7 @@ class Monitoring(object):
 
     def start(self):
         print(self.c_time, '---Monitoring is started!---\nOutput file:',
-              self.file)
+              self.out_file)
         index = 1
         while True:
             self.info(index)
@@ -82,7 +82,7 @@ class Monitoring(object):
 
     def stop(self):
         print(self.c_time, ' ---Monitoring is stopped!---\nOutput file:',
-              self.file)
+              self.out_file)
         sys.exit()
 
 
