@@ -1,9 +1,11 @@
-import sys
+import json
 import os
 import pip
 import pkg_resources
+import sys
+
+
 import yaml
-import json
 
 
 result = {'Python version': sys.version,
